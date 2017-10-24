@@ -15,5 +15,6 @@ class ResourceServerConfig : ResourceServerConfigurerAdapter() {
         http.headers().frameOptions().disable().and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+                .antMatchers("/**").authenticated()
     }
 }

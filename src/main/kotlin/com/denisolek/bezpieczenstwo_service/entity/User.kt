@@ -18,6 +18,8 @@ data class User(
 
         var message: String,
 
+        var messageDate: LocalDateTime,
+
         @ManyToMany(fetch = FetchType.EAGER)
         @JoinTable(name = "user_authority", joinColumns = arrayOf(JoinColumn(name = "username")), inverseJoinColumns = arrayOf(JoinColumn(name = "authority")))
         val authorities: Set<Authority>,
@@ -28,6 +30,7 @@ data class User(
             username = dto.username,
             password = dto.password,
             message = dto.message,
+            messageDate = LocalDateTime.now(),
             createdOn = LocalDateTime.now(),
             authorities = setOf(Authority(Authority.Role.ROLE_USER))
     )

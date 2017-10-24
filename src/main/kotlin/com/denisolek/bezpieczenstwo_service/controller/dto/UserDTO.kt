@@ -3,7 +3,7 @@ package com.denisolek.bezpieczenstwo_service.controller.dto
 import org.hibernate.validator.constraints.NotBlank
 import javax.validation.constraints.Pattern
 
-data class UserDTO(
+class UserDTO(
         @field:NotBlank
         val username: String,
 
