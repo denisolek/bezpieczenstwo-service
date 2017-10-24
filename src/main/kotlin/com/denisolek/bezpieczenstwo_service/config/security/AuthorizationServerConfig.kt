@@ -36,7 +36,7 @@ class AuthorizationServerConfig : AuthorizationServerConfigurerAdapter() {
     override fun configure(clients: ClientDetailsServiceConfigurer?) {
         clients!!.inMemory()
                 .withClient("bezpieczenstwo")
-                .authorizedGrantTypes("password")
+                .authorizedGrantTypes("password", "refresh_token")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "write", "trust")
                 .accessTokenValiditySeconds(600).secret(SECRET)
