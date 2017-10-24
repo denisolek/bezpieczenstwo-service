@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  bsmDb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bezpieczenstwo
+    volumes:
+        - ./bsm-data:/var/lib/postgresql/data
+
+  bsmService:
+    image: denisolek/bezpieczenstwo-service:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_HOST: bsmDb
+      DATABASE_PORT: 5432
+      DATABASE_NAME: bezpieczenstwo
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: 1
+      DATABASE_DDL: update
+      SECRET: topsecret
+    links:
+       - bsmDb
+    depends_on:
+       - "bsmDb"
+    entrypoint: dockerize -wait tcp://bsmDb:5432 -timeout 40s java -Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8 -jar /app.jar

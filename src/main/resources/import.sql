@@ -1,1 +1,1 @@
-INSERT INTO public.authority (role) VALUES ('ROLE_USER');
+-- INSERT INTO public.authority (role) VALUES ('ROLE_USER');

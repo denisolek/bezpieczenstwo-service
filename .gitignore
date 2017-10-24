@@ -2,6 +2,7 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 /out
+/deploy/bsm-data/
 
 ### STS ###
 .apt_generated
