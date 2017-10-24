@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  bezpieczenstwoDb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: bezpieczenstwo
