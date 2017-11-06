@@ -11,7 +11,7 @@ class AuthorizationService(private val userRepository: UserRepository) {
     fun getCurrentUser(): User {
         val authentication = SecurityContextHolder.getContext().authentication
         if (authentication.name != null)
-            return userRepository.findByUsername(authentication.name!!) ?: throw EntityNotFoundException()
+             return userRepository.findByUsername(authentication.name!!) ?: throw EntityNotFoundException()
         else
             throw EntityNotFoundException()
     }
