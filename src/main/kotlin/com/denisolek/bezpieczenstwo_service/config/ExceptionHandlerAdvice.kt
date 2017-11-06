@@ -1,5 +1,6 @@
 package com.denisolek.bezpieczenstwo_service.config
 
+import javassist.tools.web.BadHttpRequest
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -13,5 +14,11 @@ class ExceptionHandlerAdvice {
     @ResponseStatus(value = HttpStatus.CONFLICT)
     @ResponseBody
     fun requestHandlerDataIntegrityViolationException() {
+    }
+
+    @ExceptionHandler(BadHttpRequest::class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    fun requestHandlerBadRequest() {
     }
 }
