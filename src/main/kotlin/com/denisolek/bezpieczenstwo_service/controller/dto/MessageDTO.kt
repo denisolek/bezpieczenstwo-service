@@ -4,5 +4,8 @@ import org.hibernate.validator.constraints.NotBlank
 
 class MessageDTO(
         @field:NotBlank
-        val content: String
+        val content: String,
+
+        @field:NotBlank
+        val password: String
 )

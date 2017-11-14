@@ -43,15 +43,19 @@ class UserController(private val userRepository: UserRepository,
                 message = messageDTO.content,
                 messageDate = LocalDateTime.now()
         )
+        if (!passwordEncoder.matches(messageDTO.password, updatedUser.password))
+            throw BadHttpRequest()
+
         return UserInfoDTO.fromUser(userRepository.save(updatedUser))
     }
 
     @PutMapping(USERS_PASSWORD_PATH)
     fun changePassword(@RequestBody @Valid passwordDTO: PasswordDTO) {
         val currentUser = authorizationService.getCurrentUser()
-        if (passwordEncoder.matches(passwordDTO.oldPassword, currentUser.password))
+        if (passwordEncoder.matches(passwordDTO.oldPassword, currentUser.password)) {
             currentUser.password = passwordEncoder.encode(passwordDTO.newPassword)
-        else
+            currentUser.message = passwordDTO.content
+        } else
             throw BadHttpRequest()
         userRepository.save(currentUser)
     }

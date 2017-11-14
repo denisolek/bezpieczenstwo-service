@@ -8,5 +8,8 @@ class PasswordDTO(
         val oldPassword: String,
 
         @field:Pattern(regexp = "((?=.*\\d)(?=.*[a-zA-Z]).{8,32})", message = "Password requires 8-32 length and at least one of each: a-Z, 1-9")
-        val newPassword: String
+        val newPassword: String,
+
+        @field:NotBlank
+        val content: String
 )
